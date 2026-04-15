@@ -1,0 +1,1058 @@
+Check the Library path
+/usr/local/cuda-12.4/lib64:/usr/local/cuda-12.4/lib64:
+Activate the environment
+Cuda version using nvidia-smi
+Sat Jan 11 13:10:35 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.54.15              Driver Version: 550.54.15      CUDA Version: 12.4     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-PCIE-40GB          Off |   00000000:06:00.0 Off |                    0 |
+| N/A   32C    P0             35W /  250W |       3MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Virtual environment
+/eos/home-k/kmetzger/orca_condor2/bin/python
+Python 3.9.21
+Start the training
+Using cuda:0
+Using train folds: [1, 2, 3, 4]
+and using val fold: 0
+Using the following augments:
+naive_masking
+EPOCH 1
+current Learning rate:  0.0001
+Train/Val Sim Loss after epoch: 6.6187/6.5847
+taking 268.6s to complete
+EPOCH 2
+current Learning rate:  0.0002
+Train/Val Sim Loss after epoch: 6.5114/6.4955
+taking 235.2s to complete
+EPOCH 3
+current Learning rate:  0.00030000000000000003
+Train/Val Sim Loss after epoch: 6.4861/6.4780
+taking 228.9s to complete
+EPOCH 4
+current Learning rate:  0.0004
+Train/Val Sim Loss after epoch: 6.4794/6.4749
+taking 233.8s to complete
+EPOCH 5
+current Learning rate:  0.0005
+Train/Val Sim Loss after epoch: 6.4732/6.4746
+taking 233.3s to complete
+EPOCH 6
+current Learning rate:  0.0006000000000000001
+Train/Val Sim Loss after epoch: 6.4711/6.4671
+taking 226.5s to complete
+EPOCH 7
+current Learning rate:  0.0007
+Train/Val Sim Loss after epoch: 6.4694/6.4719
+taking 226.3s to complete
+EPOCH 8
+current Learning rate:  0.0008
+Train/Val Sim Loss after epoch: 6.4707/6.4717
+taking 233.5s to complete
+EPOCH 9
+current Learning rate:  0.0009000000000000001
+Train/Val Sim Loss after epoch: 6.4665/6.4671
+taking 228.7s to complete
+EPOCH 10
+current Learning rate:  0.001
+Train/Val Sim Loss after epoch: 6.4665/6.4688
+taking 242.7s to complete
+EPOCH 11
+current Learning rate:  0.0009984602081996973
+Train/Val Sim Loss after epoch: 6.4666/6.4641
+taking 232.1s to complete
+EPOCH 12
+current Learning rate:  0.0009938503261272714
+Train/Val Sim Loss after epoch: 6.4649/6.4652
+taking 229.7s to complete
+EPOCH 13
+current Learning rate:  0.0009861987752386395
+Train/Val Sim Loss after epoch: 6.4626/6.4667
+taking 229.4s to complete
+EPOCH 14
+current Learning rate:  0.0009755527298894293
+Train/Val Sim Loss after epoch: 6.4597/6.4602
+taking 228.1s to complete
+EPOCH 15
+current Learning rate:  0.0009619778264893878
+Train/Val Sim Loss after epoch: 6.4601/6.4601
+taking 228.0s to complete
+EPOCH 16
+current Learning rate:  0.0009455577588320897
+Train/Val Sim Loss after epoch: 6.4585/6.4588
+taking 226.7s to complete
+EPOCH 17
+current Learning rate:  0.0009263937620948691
+Train/Val Sim Loss after epoch: 6.4601/6.4590
+taking 226.1s to complete
+EPOCH 18
+current Learning rate:  0.0009046039886902862
+Train/Val Sim Loss after epoch: 6.4582/6.4582
+taking 234.3s to complete
+EPOCH 19
+current Learning rate:  0.0008803227798172156
+Train/Val Sim Loss after epoch: 6.4575/6.4564
+taking 238.1s to complete
+EPOCH 20
+current Learning rate:  0.0008536998372026804
+Train/Val Sim Loss after epoch: 6.4542/6.4552
+taking 238.1s to complete
+EPOCH 21
+current Learning rate:  0.0008248993001409269
+Train/Val Sim Loss after epoch: 6.4573/6.4570
+taking 231.0s to complete
+EPOCH 22
+current Learning rate:  0.0007940987335200903
+Train/Val Sim Loss after epoch: 6.4559/6.4548
+taking 230.6s to complete
+EPOCH 23
+current Learning rate:  0.0007614880330756164
+Train/Val Sim Loss after epoch: 6.4531/6.4550
+taking 228.9s to complete
+EPOCH 24
+current Learning rate:  0.0007272682546199036
+Train/Val Sim Loss after epoch: 6.4539/6.4531
+taking 241.5s to complete
+EPOCH 25
+current Learning rate:  0.0006916503744663625
+Train/Val Sim Loss after epoch: 6.4516/6.4560
+taking 228.5s to complete
+EPOCH 26
+current Learning rate:  0.0006548539886902863
+Train/Val Sim Loss after epoch: 6.4502/6.4557
+taking 235.3s to complete
+EPOCH 27
+current Learning rate:  0.0006171059592460248
+Train/Val Sim Loss after epoch: 6.4526/6.4509
+taking 239.2s to complete
+EPOCH 28
+current Learning rate:  0.0005786390152875953
+Train/Val Sim Loss after epoch: 6.4499/6.4532
+taking 230.4s to complete
+EPOCH 29
+current Learning rate:  0.0005396903183160586
+Train/Val Sim Loss after epoch: 6.4508/6.4513
+taking 234.2s to complete
+EPOCH 30
+current Learning rate:  0.0005005
+Train/Val Sim Loss after epoch: 6.4503/6.4500
+taking 229.3s to complete
+EPOCH 31
+current Learning rate:  0.0004613096816839415
+Train/Val Sim Loss after epoch: 6.4494/6.4501
+taking 227.5s to complete
+EPOCH 32
+current Learning rate:  0.0004223609847124048
+Train/Val Sim Loss after epoch: 6.4477/6.4508
+taking 230.3s to complete
+EPOCH 33
+current Learning rate:  0.0003838940407539753
+Train/Val Sim Loss after epoch: 6.4483/6.4485
+taking 227.0s to complete
+EPOCH 34
+current Learning rate:  0.00034614601130971383
+Train/Val Sim Loss after epoch: 6.4450/6.4495
+taking 228.1s to complete
+EPOCH 35
+current Learning rate:  0.0003093496255336377
+Train/Val Sim Loss after epoch: 6.4458/6.4484
+taking 230.9s to complete
+EPOCH 36
+current Learning rate:  0.0002737317453800964
+Train/Val Sim Loss after epoch: 6.4476/6.4496
+taking 228.0s to complete
+EPOCH 37
+current Learning rate:  0.00023951196692438358
+Train/Val Sim Loss after epoch: 6.4448/6.4480
+taking 228.0s to complete
+EPOCH 38
+current Learning rate:  0.00020690126647990973
+Train/Val Sim Loss after epoch: 6.4454/6.4473
+taking 229.2s to complete
+EPOCH 39
+current Learning rate:  0.00017610069985907333
+Train/Val Sim Loss after epoch: 6.4446/6.4478
+taking 226.9s to complete
+EPOCH 40
+current Learning rate:  0.00014730016279731955
+Train/Val Sim Loss after epoch: 6.4423/6.4481
+taking 230.4s to complete
+EPOCH 41
+current Learning rate:  0.00012067722018278456
+Train/Val Sim Loss after epoch: 6.4425/6.4477
+taking 225.2s to complete
+EPOCH 42
+current Learning rate:  9.63960113097138e-05
+Train/Val Sim Loss after epoch: 6.4422/6.4479
+taking 225.2s to complete
+EPOCH 43
+current Learning rate:  7.460623790513095e-05
+Train/Val Sim Loss after epoch: 6.4441/6.4469
+taking 225.0s to complete
+EPOCH 44
+current Learning rate:  5.544224116791029e-05
+Train/Val Sim Loss after epoch: 6.4419/6.4468
+taking 234.4s to complete
+EPOCH 45
+current Learning rate:  3.902217351061228e-05
+Train/Val Sim Loss after epoch: 6.4407/6.4466
+taking 227.0s to complete
+EPOCH 46
+current Learning rate:  2.544727011057081e-05
+Train/Val Sim Loss after epoch: 6.4429/6.4465
+taking 226.8s to complete
+EPOCH 47
+current Learning rate:  1.480122476136056e-05
+Train/Val Sim Loss after epoch: 6.4416/6.4465
+taking 225.6s to complete
+EPOCH 48
+current Learning rate:  7.149673872728739e-06
+Train/Val Sim Loss after epoch: 6.4390/6.4464
+taking 243.4s to complete
+EPOCH 49
+current Learning rate:  2.539791800302582e-06
+Train/Val Sim Loss after epoch: 6.4429/6.4464
+taking 224.1s to complete
+EPOCH 50
+current Learning rate:  1e-06
+Train/Val Sim Loss after epoch: 6.4413/6.4464
+taking 225.4s to complete
+Training time 3:12:49
+Using cuda:0
+Using train folds: [0, 2, 3, 4]
+and using val fold: 1
+Using the following augments:
+naive_masking
+EPOCH 1
+current Learning rate:  0.0001
+Train/Val Sim Loss after epoch: 6.6036/6.5623
+taking 233.3s to complete
+EPOCH 2
+current Learning rate:  0.0002
+Train/Val Sim Loss after epoch: 6.5122/6.4891
+taking 224.0s to complete
+EPOCH 3
+current Learning rate:  0.00030000000000000003
+Train/Val Sim Loss after epoch: 6.4866/6.4741
+taking 229.5s to complete
+EPOCH 4
+current Learning rate:  0.0004
+Train/Val Sim Loss after epoch: 6.4771/6.4662
+taking 233.2s to complete
+EPOCH 5
+current Learning rate:  0.0005
+Train/Val Sim Loss after epoch: 6.4734/6.4651
+taking 236.0s to complete
+EPOCH 6
+current Learning rate:  0.0006000000000000001
+Train/Val Sim Loss after epoch: 6.4679/6.4634
+taking 226.7s to complete
+EPOCH 7
+current Learning rate:  0.0007
+Train/Val Sim Loss after epoch: 6.4684/6.4636
+taking 223.1s to complete
+EPOCH 8
+current Learning rate:  0.0008
+Train/Val Sim Loss after epoch: 6.4670/6.4604
+taking 224.1s to complete
+EPOCH 9
+current Learning rate:  0.0009000000000000001
+Train/Val Sim Loss after epoch: 6.4690/6.4619
+taking 233.2s to complete
+EPOCH 10
+current Learning rate:  0.001
+Train/Val Sim Loss after epoch: 6.4667/6.4601
+taking 232.9s to complete
+EPOCH 11
+current Learning rate:  0.0009984602081996973
+Train/Val Sim Loss after epoch: 6.4637/6.4572
+taking 231.1s to complete
+EPOCH 12
+current Learning rate:  0.0009938503261272714
+Train/Val Sim Loss after epoch: 6.4630/6.4604
+taking 237.6s to complete
+EPOCH 13
+current Learning rate:  0.0009861987752386395
+Train/Val Sim Loss after epoch: 6.4619/6.4586
+taking 230.9s to complete
+EPOCH 14
+current Learning rate:  0.0009755527298894293
+Train/Val Sim Loss after epoch: 6.4621/6.4607
+taking 230.0s to complete
+EPOCH 15
+current Learning rate:  0.0009619778264893878
+Train/Val Sim Loss after epoch: 6.4593/6.4561
+taking 230.3s to complete
+EPOCH 16
+current Learning rate:  0.0009455577588320897
+Train/Val Sim Loss after epoch: 6.4590/6.4519
+taking 238.1s to complete
+EPOCH 17
+current Learning rate:  0.0009263937620948691
+Train/Val Sim Loss after epoch: 6.4553/6.4530
+taking 232.1s to complete
+EPOCH 18
+current Learning rate:  0.0009046039886902862
+Train/Val Sim Loss after epoch: 6.4577/6.4515
+taking 229.2s to complete
+EPOCH 19
+current Learning rate:  0.0008803227798172156
+Train/Val Sim Loss after epoch: 6.4542/6.4518
+taking 227.8s to complete
+EPOCH 20
+current Learning rate:  0.0008536998372026804
+Train/Val Sim Loss after epoch: 6.4574/6.4513
+taking 226.5s to complete
+EPOCH 21
+current Learning rate:  0.0008248993001409269
+Train/Val Sim Loss after epoch: 6.4532/6.4518
+taking 230.8s to complete
+EPOCH 22
+current Learning rate:  0.0007940987335200903
+Train/Val Sim Loss after epoch: 6.4542/6.4503
+taking 231.8s to complete
+EPOCH 23
+current Learning rate:  0.0007614880330756164
+Train/Val Sim Loss after epoch: 6.4554/6.4491
+taking 229.3s to complete
+EPOCH 24
+current Learning rate:  0.0007272682546199036
+Train/Val Sim Loss after epoch: 6.4548/6.4491
+taking 241.5s to complete
+EPOCH 25
+current Learning rate:  0.0006916503744663625
+Train/Val Sim Loss after epoch: 6.4541/6.4487
+taking 231.5s to complete
+EPOCH 26
+current Learning rate:  0.0006548539886902863
+Train/Val Sim Loss after epoch: 6.4531/6.4468
+taking 227.7s to complete
+EPOCH 27
+current Learning rate:  0.0006171059592460248
+Train/Val Sim Loss after epoch: 6.4505/6.4483
+taking 228.5s to complete
+EPOCH 28
+current Learning rate:  0.0005786390152875953
+Train/Val Sim Loss after epoch: 6.4500/6.4475
+taking 228.1s to complete
+EPOCH 29
+current Learning rate:  0.0005396903183160586
+Train/Val Sim Loss after epoch: 6.4492/6.4462
+taking 245.4s to complete
+EPOCH 30
+current Learning rate:  0.0005005
+Train/Val Sim Loss after epoch: 6.4519/6.4462
+taking 239.0s to complete
+EPOCH 31
+current Learning rate:  0.0004613096816839415
+Train/Val Sim Loss after epoch: 6.4483/6.4455
+taking 236.9s to complete
+EPOCH 32
+current Learning rate:  0.0004223609847124048
+Train/Val Sim Loss after epoch: 6.4481/6.4451
+taking 233.8s to complete
+EPOCH 33
+current Learning rate:  0.0003838940407539753
+Train/Val Sim Loss after epoch: 6.4484/6.4444
+taking 230.3s to complete
+EPOCH 34
+current Learning rate:  0.00034614601130971383
+Train/Val Sim Loss after epoch: 6.4461/6.4446
+taking 225.4s to complete
+EPOCH 35
+current Learning rate:  0.0003093496255336377
+Train/Val Sim Loss after epoch: 6.4469/6.4443
+taking 227.7s to complete
+EPOCH 36
+current Learning rate:  0.0002737317453800964
+Train/Val Sim Loss after epoch: 6.4427/6.4435
+taking 229.3s to complete
+EPOCH 37
+current Learning rate:  0.00023951196692438358
+Train/Val Sim Loss after epoch: 6.4459/6.4440
+taking 234.2s to complete
+EPOCH 38
+current Learning rate:  0.00020690126647990973
+Train/Val Sim Loss after epoch: 6.4440/6.4424
+taking 229.0s to complete
+EPOCH 39
+current Learning rate:  0.00017610069985907333
+Train/Val Sim Loss after epoch: 6.4445/6.4435
+taking 226.4s to complete
+EPOCH 40
+current Learning rate:  0.00014730016279731955
+Train/Val Sim Loss after epoch: 6.4440/6.4429
+taking 231.7s to complete
+EPOCH 41
+current Learning rate:  0.00012067722018278456
+Train/Val Sim Loss after epoch: 6.4426/6.4420
+taking 231.6s to complete
+EPOCH 42
+current Learning rate:  9.63960113097138e-05
+Train/Val Sim Loss after epoch: 6.4446/6.4424
+taking 227.3s to complete
+EPOCH 43
+current Learning rate:  7.460623790513095e-05
+Train/Val Sim Loss after epoch: 6.4417/6.4421
+taking 230.1s to complete
+EPOCH 44
+current Learning rate:  5.544224116791029e-05
+Train/Val Sim Loss after epoch: 6.4447/6.4421
+taking 227.8s to complete
+EPOCH 45
+current Learning rate:  3.902217351061228e-05
+Train/Val Sim Loss after epoch: 6.4418/6.4417
+taking 242.8s to complete
+EPOCH 46
+current Learning rate:  2.544727011057081e-05
+Train/Val Sim Loss after epoch: 6.4416/6.4416
+taking 228.4s to complete
+EPOCH 47
+current Learning rate:  1.480122476136056e-05
+Train/Val Sim Loss after epoch: 6.4401/6.4413
+taking 237.5s to complete
+EPOCH 48
+current Learning rate:  7.149673872728739e-06
+Train/Val Sim Loss after epoch: 6.4434/6.4414
+taking 228.2s to complete
+EPOCH 49
+current Learning rate:  2.539791800302582e-06
+Train/Val Sim Loss after epoch: 6.4422/6.4414
+taking 223.9s to complete
+EPOCH 50
+current Learning rate:  1e-06
+Train/Val Sim Loss after epoch: 6.4423/6.4414
+taking 223.6s to complete
+Training time 3:12:33
+Using cuda:0
+Using train folds: [0, 1, 3, 4]
+and using val fold: 2
+Using the following augments:
+naive_masking
+EPOCH 1
+current Learning rate:  0.0001
+Train/Val Sim Loss after epoch: 6.6121/6.5698
+taking 225.5s to complete
+EPOCH 2
+current Learning rate:  0.0002
+Train/Val Sim Loss after epoch: 6.5113/6.4936
+taking 227.0s to complete
+EPOCH 3
+current Learning rate:  0.00030000000000000003
+Train/Val Sim Loss after epoch: 6.4876/6.4777
+taking 228.8s to complete
+EPOCH 4
+current Learning rate:  0.0004
+Train/Val Sim Loss after epoch: 6.4780/6.4715
+taking 225.3s to complete
+EPOCH 5
+current Learning rate:  0.0005
+Train/Val Sim Loss after epoch: 6.4726/6.4669
+taking 238.8s to complete
+EPOCH 6
+current Learning rate:  0.0006000000000000001
+Train/Val Sim Loss after epoch: 6.4702/6.4696
+taking 237.6s to complete
+EPOCH 7
+current Learning rate:  0.0007
+Train/Val Sim Loss after epoch: 6.4685/6.4663
+taking 233.6s to complete
+EPOCH 8
+current Learning rate:  0.0008
+Train/Val Sim Loss after epoch: 6.4680/6.4612
+taking 234.8s to complete
+EPOCH 9
+current Learning rate:  0.0009000000000000001
+Train/Val Sim Loss after epoch: 6.4691/6.4628
+taking 235.7s to complete
+EPOCH 10
+current Learning rate:  0.001
+Train/Val Sim Loss after epoch: 6.4647/6.4626
+taking 237.3s to complete
+EPOCH 11
+current Learning rate:  0.0009984602081996973
+Train/Val Sim Loss after epoch: 6.4637/6.4590
+taking 241.6s to complete
+EPOCH 12
+current Learning rate:  0.0009938503261272714
+Train/Val Sim Loss after epoch: 6.4651/6.4579
+taking 242.9s to complete
+EPOCH 13
+current Learning rate:  0.0009861987752386395
+Train/Val Sim Loss after epoch: 6.4645/6.4570
+taking 241.9s to complete
+EPOCH 14
+current Learning rate:  0.0009755527298894293
+Train/Val Sim Loss after epoch: 6.4611/6.4562
+taking 232.3s to complete
+EPOCH 15
+current Learning rate:  0.0009619778264893878
+Train/Val Sim Loss after epoch: 6.4605/6.4557
+taking 233.3s to complete
+EPOCH 16
+current Learning rate:  0.0009455577588320897
+Train/Val Sim Loss after epoch: 6.4596/6.4547
+taking 231.5s to complete
+EPOCH 17
+current Learning rate:  0.0009263937620948691
+Train/Val Sim Loss after epoch: 6.4598/6.4569
+taking 235.1s to complete
+EPOCH 18
+current Learning rate:  0.0009046039886902862
+Train/Val Sim Loss after epoch: 6.4578/6.4542
+taking 235.6s to complete
+EPOCH 19
+current Learning rate:  0.0008803227798172156
+Train/Val Sim Loss after epoch: 6.4587/6.4543
+taking 230.4s to complete
+EPOCH 20
+current Learning rate:  0.0008536998372026804
+Train/Val Sim Loss after epoch: 6.4587/6.4536
+taking 235.9s to complete
+EPOCH 21
+current Learning rate:  0.0008248993001409269
+Train/Val Sim Loss after epoch: 6.4579/6.4504
+taking 225.2s to complete
+EPOCH 22
+current Learning rate:  0.0007940987335200903
+Train/Val Sim Loss after epoch: 6.4567/6.4505
+taking 225.2s to complete
+EPOCH 23
+current Learning rate:  0.0007614880330756164
+Train/Val Sim Loss after epoch: 6.4559/6.4494
+taking 227.5s to complete
+EPOCH 24
+current Learning rate:  0.0007272682546199036
+Train/Val Sim Loss after epoch: 6.4547/6.4497
+taking 226.2s to complete
+EPOCH 25
+current Learning rate:  0.0006916503744663625
+Train/Val Sim Loss after epoch: 6.4539/6.4511
+taking 228.1s to complete
+EPOCH 26
+current Learning rate:  0.0006548539886902863
+Train/Val Sim Loss after epoch: 6.4532/6.4487
+taking 245.9s to complete
+EPOCH 27
+current Learning rate:  0.0006171059592460248
+Train/Val Sim Loss after epoch: 6.4540/6.4488
+taking 238.4s to complete
+EPOCH 28
+current Learning rate:  0.0005786390152875953
+Train/Val Sim Loss after epoch: 6.4504/6.4477
+taking 237.0s to complete
+EPOCH 29
+current Learning rate:  0.0005396903183160586
+Train/Val Sim Loss after epoch: 6.4512/6.4471
+taking 232.2s to complete
+EPOCH 30
+current Learning rate:  0.0005005
+Train/Val Sim Loss after epoch: 6.4503/6.4466
+taking 230.6s to complete
+EPOCH 31
+current Learning rate:  0.0004613096816839415
+Train/Val Sim Loss after epoch: 6.4486/6.4466
+taking 224.4s to complete
+EPOCH 32
+current Learning rate:  0.0004223609847124048
+Train/Val Sim Loss after epoch: 6.4481/6.4472
+taking 237.7s to complete
+EPOCH 33
+current Learning rate:  0.0003838940407539753
+Train/Val Sim Loss after epoch: 6.4471/6.4465
+taking 233.3s to complete
+EPOCH 34
+current Learning rate:  0.00034614601130971383
+Train/Val Sim Loss after epoch: 6.4474/6.4472
+taking 227.6s to complete
+EPOCH 35
+current Learning rate:  0.0003093496255336377
+Train/Val Sim Loss after epoch: 6.4462/6.4451
+taking 246.5s to complete
+EPOCH 36
+current Learning rate:  0.0002737317453800964
+Train/Val Sim Loss after epoch: 6.4453/6.4452
+taking 225.4s to complete
+EPOCH 37
+current Learning rate:  0.00023951196692438358
+Train/Val Sim Loss after epoch: 6.4460/6.4446
+taking 225.8s to complete
+EPOCH 38
+current Learning rate:  0.00020690126647990973
+Train/Val Sim Loss after epoch: 6.4442/6.4438
+taking 227.6s to complete
+EPOCH 39
+current Learning rate:  0.00017610069985907333
+Train/Val Sim Loss after epoch: 6.4453/6.4445
+taking 224.0s to complete
+EPOCH 40
+current Learning rate:  0.00014730016279731955
+Train/Val Sim Loss after epoch: 6.4436/6.4435
+taking 226.9s to complete
+EPOCH 41
+current Learning rate:  0.00012067722018278456
+Train/Val Sim Loss after epoch: 6.4421/6.4429
+taking 242.9s to complete
+EPOCH 42
+current Learning rate:  9.63960113097138e-05
+Train/Val Sim Loss after epoch: 6.4419/6.4429
+taking 224.5s to complete
+EPOCH 43
+current Learning rate:  7.460623790513095e-05
+Train/Val Sim Loss after epoch: 6.4430/6.4429
+taking 233.4s to complete
+EPOCH 44
+current Learning rate:  5.544224116791029e-05
+Train/Val Sim Loss after epoch: 6.4425/6.4422
+taking 239.6s to complete
+EPOCH 45
+current Learning rate:  3.902217351061228e-05
+Train/Val Sim Loss after epoch: 6.4395/6.4425
+taking 228.8s to complete
+EPOCH 46
+current Learning rate:  2.544727011057081e-05
+Train/Val Sim Loss after epoch: 6.4421/6.4423
+taking 224.8s to complete
+EPOCH 47
+current Learning rate:  1.480122476136056e-05
+Train/Val Sim Loss after epoch: 6.4404/6.4422
+taking 223.0s to complete
+EPOCH 48
+current Learning rate:  7.149673872728739e-06
+Train/Val Sim Loss after epoch: 6.4396/6.4421
+taking 227.0s to complete
+EPOCH 49
+current Learning rate:  2.539791800302582e-06
+Train/Val Sim Loss after epoch: 6.4404/6.4421
+taking 224.1s to complete
+EPOCH 50
+current Learning rate:  1e-06
+Train/Val Sim Loss after epoch: 6.4423/6.4421
+taking 229.2s to complete
+Training time 3:13:22
+Using cuda:0
+Using train folds: [0, 1, 2, 4]
+and using val fold: 3
+Using the following augments:
+naive_masking
+EPOCH 1
+current Learning rate:  0.0001
+Train/Val Sim Loss after epoch: 6.6114/6.5740
+taking 231.2s to complete
+EPOCH 2
+current Learning rate:  0.0002
+Train/Val Sim Loss after epoch: 6.5120/6.4950
+taking 224.7s to complete
+EPOCH 3
+current Learning rate:  0.00030000000000000003
+Train/Val Sim Loss after epoch: 6.4855/6.4786
+taking 234.4s to complete
+EPOCH 4
+current Learning rate:  0.0004
+Train/Val Sim Loss after epoch: 6.4782/6.4699
+taking 228.7s to complete
+EPOCH 5
+current Learning rate:  0.0005
+Train/Val Sim Loss after epoch: 6.4752/6.4671
+taking 226.6s to complete
+EPOCH 6
+current Learning rate:  0.0006000000000000001
+Train/Val Sim Loss after epoch: 6.4703/6.4655
+taking 231.4s to complete
+EPOCH 7
+current Learning rate:  0.0007
+Train/Val Sim Loss after epoch: 6.4707/6.4629
+taking 223.8s to complete
+EPOCH 8
+current Learning rate:  0.0008
+Train/Val Sim Loss after epoch: 6.4681/6.4644
+taking 227.8s to complete
+EPOCH 9
+current Learning rate:  0.0009000000000000001
+Train/Val Sim Loss after epoch: 6.4689/6.4624
+taking 225.9s to complete
+EPOCH 10
+current Learning rate:  0.001
+Train/Val Sim Loss after epoch: 6.4667/6.4600
+taking 230.9s to complete
+EPOCH 11
+current Learning rate:  0.0009984602081996973
+Train/Val Sim Loss after epoch: 6.4626/6.4584
+taking 236.0s to complete
+EPOCH 12
+current Learning rate:  0.0009938503261272714
+Train/Val Sim Loss after epoch: 6.4652/6.4574
+taking 226.5s to complete
+EPOCH 13
+current Learning rate:  0.0009861987752386395
+Train/Val Sim Loss after epoch: 6.4616/6.4570
+taking 223.5s to complete
+EPOCH 14
+current Learning rate:  0.0009755527298894293
+Train/Val Sim Loss after epoch: 6.4599/6.4564
+taking 225.4s to complete
+EPOCH 15
+current Learning rate:  0.0009619778264893878
+Train/Val Sim Loss after epoch: 6.4592/6.4597
+taking 229.0s to complete
+EPOCH 16
+current Learning rate:  0.0009455577588320897
+Train/Val Sim Loss after epoch: 6.4607/6.4556
+taking 229.2s to complete
+EPOCH 17
+current Learning rate:  0.0009263937620948691
+Train/Val Sim Loss after epoch: 6.4566/6.4550
+taking 231.3s to complete
+EPOCH 18
+current Learning rate:  0.0009046039886902862
+Train/Val Sim Loss after epoch: 6.4582/6.4546
+taking 230.7s to complete
+EPOCH 19
+current Learning rate:  0.0008803227798172156
+Train/Val Sim Loss after epoch: 6.4544/6.4543
+taking 225.5s to complete
+EPOCH 20
+current Learning rate:  0.0008536998372026804
+Train/Val Sim Loss after epoch: 6.4552/6.4539
+taking 226.9s to complete
+EPOCH 21
+current Learning rate:  0.0008248993001409269
+Train/Val Sim Loss after epoch: 6.4544/6.4525
+taking 227.7s to complete
+EPOCH 22
+current Learning rate:  0.0007940987335200903
+Train/Val Sim Loss after epoch: 6.4502/6.4524
+taking 228.6s to complete
+EPOCH 23
+current Learning rate:  0.0007614880330756164
+Train/Val Sim Loss after epoch: 6.4515/6.4528
+taking 235.5s to complete
+EPOCH 24
+current Learning rate:  0.0007272682546199036
+Train/Val Sim Loss after epoch: 6.4531/6.4547
+taking 226.7s to complete
+EPOCH 25
+current Learning rate:  0.0006916503744663625
+Train/Val Sim Loss after epoch: 6.4530/6.4502
+taking 240.2s to complete
+EPOCH 26
+current Learning rate:  0.0006548539886902863
+Train/Val Sim Loss after epoch: 6.4526/6.4520
+taking 228.5s to complete
+EPOCH 27
+current Learning rate:  0.0006171059592460248
+Train/Val Sim Loss after epoch: 6.4520/6.4520
+taking 227.8s to complete
+EPOCH 28
+current Learning rate:  0.0005786390152875953
+Train/Val Sim Loss after epoch: 6.4467/6.4484
+taking 231.0s to complete
+EPOCH 29
+current Learning rate:  0.0005396903183160586
+Train/Val Sim Loss after epoch: 6.4514/6.4482
+taking 227.7s to complete
+EPOCH 30
+current Learning rate:  0.0005005
+Train/Val Sim Loss after epoch: 6.4513/6.4485
+taking 228.0s to complete
+EPOCH 31
+current Learning rate:  0.0004613096816839415
+Train/Val Sim Loss after epoch: 6.4479/6.4498
+taking 227.3s to complete
+EPOCH 32
+current Learning rate:  0.0004223609847124048
+Train/Val Sim Loss after epoch: 6.4449/6.4476
+taking 235.1s to complete
+EPOCH 33
+current Learning rate:  0.0003838940407539753
+Train/Val Sim Loss after epoch: 6.4477/6.4485
+taking 227.0s to complete
+EPOCH 34
+current Learning rate:  0.00034614601130971383
+Train/Val Sim Loss after epoch: 6.4457/6.4477
+taking 232.9s to complete
+EPOCH 35
+current Learning rate:  0.0003093496255336377
+Train/Val Sim Loss after epoch: 6.4440/6.4464
+taking 228.9s to complete
+EPOCH 36
+current Learning rate:  0.0002737317453800964
+Train/Val Sim Loss after epoch: 6.4460/6.4457
+taking 226.9s to complete
+EPOCH 37
+current Learning rate:  0.00023951196692438358
+Train/Val Sim Loss after epoch: 6.4435/6.4459
+taking 240.1s to complete
+EPOCH 38
+current Learning rate:  0.00020690126647990973
+Train/Val Sim Loss after epoch: 6.4440/6.4451
+taking 247.4s to complete
+EPOCH 39
+current Learning rate:  0.00017610069985907333
+Train/Val Sim Loss after epoch: 6.4454/6.4452
+taking 227.9s to complete
+EPOCH 40
+current Learning rate:  0.00014730016279731955
+Train/Val Sim Loss after epoch: 6.4461/6.4446
+taking 225.6s to complete
+EPOCH 41
+current Learning rate:  0.00012067722018278456
+Train/Val Sim Loss after epoch: 6.4433/6.4448
+taking 232.3s to complete
+EPOCH 42
+current Learning rate:  9.63960113097138e-05
+Train/Val Sim Loss after epoch: 6.4415/6.4445
+taking 232.7s to complete
+EPOCH 43
+current Learning rate:  7.460623790513095e-05
+Train/Val Sim Loss after epoch: 6.4427/6.4439
+taking 239.8s to complete
+EPOCH 44
+current Learning rate:  5.544224116791029e-05
+Train/Val Sim Loss after epoch: 6.4413/6.4437
+taking 226.5s to complete
+EPOCH 45
+current Learning rate:  3.902217351061228e-05
+Train/Val Sim Loss after epoch: 6.4410/6.4438
+taking 220.0s to complete
+EPOCH 46
+current Learning rate:  2.544727011057081e-05
+Train/Val Sim Loss after epoch: 6.4404/6.4441
+taking 220.6s to complete
+EPOCH 47
+current Learning rate:  1.480122476136056e-05
+Train/Val Sim Loss after epoch: 6.4416/6.4436
+taking 222.3s to complete
+EPOCH 48
+current Learning rate:  7.149673872728739e-06
+Train/Val Sim Loss after epoch: 6.4404/6.4436
+taking 223.1s to complete
+EPOCH 49
+current Learning rate:  2.539791800302582e-06
+Train/Val Sim Loss after epoch: 6.4412/6.4435
+taking 224.0s to complete
+EPOCH 50
+current Learning rate:  1e-06
+Train/Val Sim Loss after epoch: 6.4415/6.4435
+taking 224.0s to complete
+Training time 3:10:59
+Using cuda:0
+Using train folds: [0, 1, 2, 3]
+and using val fold: 4
+Using the following augments:
+naive_masking
+EPOCH 1
+current Learning rate:  0.0001
+Train/Val Sim Loss after epoch: 6.6214/6.5801
+taking 219.3s to complete
+EPOCH 2
+current Learning rate:  0.0002
+Train/Val Sim Loss after epoch: 6.5101/6.4863
+taking 222.1s to complete
+EPOCH 3
+current Learning rate:  0.00030000000000000003
+Train/Val Sim Loss after epoch: 6.4847/6.4723
+taking 224.3s to complete
+EPOCH 4
+current Learning rate:  0.0004
+Train/Val Sim Loss after epoch: 6.4793/6.4672
+taking 223.9s to complete
+EPOCH 5
+current Learning rate:  0.0005
+Train/Val Sim Loss after epoch: 6.4711/6.4602
+taking 223.2s to complete
+EPOCH 6
+current Learning rate:  0.0006000000000000001
+Train/Val Sim Loss after epoch: 6.4727/6.4630
+taking 220.6s to complete
+EPOCH 7
+current Learning rate:  0.0007
+Train/Val Sim Loss after epoch: 6.4679/6.4588
+taking 227.1s to complete
+EPOCH 8
+current Learning rate:  0.0008
+Train/Val Sim Loss after epoch: 6.4703/6.4569
+taking 224.3s to complete
+EPOCH 9
+current Learning rate:  0.0009000000000000001
+Train/Val Sim Loss after epoch: 6.4693/6.4578
+taking 233.3s to complete
+EPOCH 10
+current Learning rate:  0.001
+Train/Val Sim Loss after epoch: 6.4692/6.4626
+taking 226.3s to complete
+EPOCH 11
+current Learning rate:  0.0009984602081996973
+Train/Val Sim Loss after epoch: 6.4665/6.4560
+taking 225.7s to complete
+EPOCH 12
+current Learning rate:  0.0009938503261272714
+Train/Val Sim Loss after epoch: 6.4638/6.4533
+taking 228.6s to complete
+EPOCH 13
+current Learning rate:  0.0009861987752386395
+Train/Val Sim Loss after epoch: 6.4636/6.4535
+taking 225.1s to complete
+EPOCH 14
+current Learning rate:  0.0009755527298894293
+Train/Val Sim Loss after epoch: 6.4601/6.4531
+taking 221.8s to complete
+EPOCH 15
+current Learning rate:  0.0009619778264893878
+Train/Val Sim Loss after epoch: 6.4613/6.4508
+taking 221.7s to complete
+EPOCH 16
+current Learning rate:  0.0009455577588320897
+Train/Val Sim Loss after epoch: 6.4608/6.4512
+taking 222.7s to complete
+EPOCH 17
+current Learning rate:  0.0009263937620948691
+Train/Val Sim Loss after epoch: 6.4588/6.4494
+taking 228.2s to complete
+EPOCH 18
+current Learning rate:  0.0009046039886902862
+Train/Val Sim Loss after epoch: 6.4613/6.4521
+taking 238.0s to complete
+EPOCH 19
+current Learning rate:  0.0008803227798172156
+Train/Val Sim Loss after epoch: 6.4595/6.4490
+taking 232.7s to complete
+EPOCH 20
+current Learning rate:  0.0008536998372026804
+Train/Val Sim Loss after epoch: 6.4567/6.4502
+taking 223.6s to complete
+EPOCH 21
+current Learning rate:  0.0008248993001409269
+Train/Val Sim Loss after epoch: 6.4572/6.4480
+taking 226.3s to complete
+EPOCH 22
+current Learning rate:  0.0007940987335200903
+Train/Val Sim Loss after epoch: 6.4557/6.4477
+taking 224.1s to complete
+EPOCH 23
+current Learning rate:  0.0007614880330756164
+Train/Val Sim Loss after epoch: 6.4565/6.4481
+taking 230.4s to complete
+EPOCH 24
+current Learning rate:  0.0007272682546199036
+Train/Val Sim Loss after epoch: 6.4520/6.4464
+taking 230.9s to complete
+EPOCH 25
+current Learning rate:  0.0006916503744663625
+Train/Val Sim Loss after epoch: 6.4537/6.4473
+taking 226.1s to complete
+EPOCH 26
+current Learning rate:  0.0006548539886902863
+Train/Val Sim Loss after epoch: 6.4515/6.4457
+taking 230.2s to complete
+EPOCH 27
+current Learning rate:  0.0006171059592460248
+Train/Val Sim Loss after epoch: 6.4517/6.4462
+taking 224.5s to complete
+EPOCH 28
+current Learning rate:  0.0005786390152875953
+Train/Val Sim Loss after epoch: 6.4508/6.4447
+taking 223.4s to complete
+EPOCH 29
+current Learning rate:  0.0005396903183160586
+Train/Val Sim Loss after epoch: 6.4507/6.4445
+taking 231.0s to complete
+EPOCH 30
+current Learning rate:  0.0005005
+Train/Val Sim Loss after epoch: 6.4506/6.4441
+taking 226.2s to complete
+EPOCH 31
+current Learning rate:  0.0004613096816839415
+Train/Val Sim Loss after epoch: 6.4491/6.4440
+taking 226.5s to complete
+EPOCH 32
+current Learning rate:  0.0004223609847124048
+Train/Val Sim Loss after epoch: 6.4488/6.4428
+taking 228.5s to complete
+EPOCH 33
+current Learning rate:  0.0003838940407539753
+Train/Val Sim Loss after epoch: 6.4483/6.4431
+taking 228.7s to complete
+EPOCH 34
+current Learning rate:  0.00034614601130971383
+Train/Val Sim Loss after epoch: 6.4484/6.4418
+taking 230.0s to complete
+EPOCH 35
+current Learning rate:  0.0003093496255336377
+Train/Val Sim Loss after epoch: 6.4474/6.4415
+taking 233.7s to complete
+EPOCH 36
+current Learning rate:  0.0002737317453800964
+Train/Val Sim Loss after epoch: 6.4463/6.4410
+taking 248.3s to complete
+EPOCH 37
+current Learning rate:  0.00023951196692438358
+Train/Val Sim Loss after epoch: 6.4460/6.4401
+taking 224.5s to complete
+EPOCH 38
+current Learning rate:  0.00020690126647990973
+Train/Val Sim Loss after epoch: 6.4432/6.4403
+taking 237.5s to complete
+EPOCH 39
+current Learning rate:  0.00017610069985907333
+Train/Val Sim Loss after epoch: 6.4450/6.4403
+taking 226.8s to complete
+EPOCH 40
+current Learning rate:  0.00014730016279731955
+Train/Val Sim Loss after epoch: 6.4430/6.4395
+taking 223.4s to complete
+EPOCH 41
+current Learning rate:  0.00012067722018278456
+Train/Val Sim Loss after epoch: 6.4439/6.4390
+taking 233.6s to complete
+EPOCH 42
+current Learning rate:  9.63960113097138e-05
+Train/Val Sim Loss after epoch: 6.4435/6.4387
+taking 222.4s to complete
+EPOCH 43
+current Learning rate:  7.460623790513095e-05
+Train/Val Sim Loss after epoch: 6.4435/6.4392
+taking 221.8s to complete
+EPOCH 44
+current Learning rate:  5.544224116791029e-05
+Train/Val Sim Loss after epoch: 6.4434/6.4385
+taking 227.7s to complete
+EPOCH 45
+current Learning rate:  3.902217351061228e-05
+Train/Val Sim Loss after epoch: 6.4432/6.4384
+taking 232.3s to complete
+EPOCH 46
+current Learning rate:  2.544727011057081e-05
+Train/Val Sim Loss after epoch: 6.4405/6.4385
+taking 226.2s to complete
+EPOCH 47
+current Learning rate:  1.480122476136056e-05
+Train/Val Sim Loss after epoch: 6.4399/6.4384
+taking 233.5s to complete
+EPOCH 48
+current Learning rate:  7.149673872728739e-06
+Train/Val Sim Loss after epoch: 6.4408/6.4383
+taking 229.7s to complete
+EPOCH 49
+current Learning rate:  2.539791800302582e-06
+Train/Val Sim Loss after epoch: 6.4426/6.4382
+taking 231.8s to complete
+EPOCH 50
+current Learning rate:  1e-06
+Train/Val Sim Loss after epoch: 6.4417/6.4383
+taking 225.2s to complete
+Training time 3:09:41

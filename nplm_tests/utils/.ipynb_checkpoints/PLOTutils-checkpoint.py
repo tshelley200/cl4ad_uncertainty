@@ -1,0 +1,436 @@
+import glob, json, h5py, math, time, os, torch
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as font_manager
+from scipy.stats import norm, expon, chi2, uniform, chisquare
+
+
+def _extract_epochs(tau_logs):
+    return np.array([e["epoch"] for e in tau_logs])
+
+
+def plot_scalar(tau_logs, key, ylabel=None, title=None, save_path=''):
+    epochs = _extract_epochs(tau_logs)
+    values = np.array([e[key] for e in tau_logs])
+
+    plt.figure()
+    plt.plot(epochs, values, marker="o")
+    plt.xlabel("Epoch")
+    plt.ylabel(ylabel if ylabel else key)
+    plt.title(title if title else f"{key} vs epoch")
+    plt.grid(True)
+    if not save_path=='':
+        plt.savefig(save_path+key+'_history.png')
+    plt.show()
+    plt.close()
+
+def plot_widths(tau_logs,  save_path=''):
+    epochs = _extract_epochs(tau_logs)
+    widths = np.stack([e["width"] for e in tau_logs])  # (T, K)
+
+    plt.figure()
+    for k in range(widths.shape[1]):
+        plt.plot(epochs, widths[:, k], label=f"width[{k}]")
+
+    plt.xlabel("Epoch")
+    plt.ylabel("Width")
+    plt.title("Kernel width evolution")
+    plt.legend()
+    plt.grid(True)
+    if not save_path=='':
+        plt.savefig(save_path+'widths_history.png')
+    plt.show()
+    plt.close()
+
+def plot_coeffs(tau_logs, save_path=''):
+    epochs = _extract_epochs(tau_logs)
+    coeffs = np.stack([e["coeffs"] for e in tau_logs])  # (T, K)
+
+    plt.figure()
+    for k in range(coeffs.shape[1]):
+        plt.plot(epochs, coeffs[:, k], label=f"coeff[{k}]")
+
+    plt.xlabel("Epoch")
+    plt.ylabel("Coefficient value")
+    plt.title("Coefficient evolution")
+    plt.legend()
+    plt.grid(True)
+    if not save_path=='':
+        plt.savefig(save_path+'coeffs_history.png')
+    plt.show()
+    plt.close()
+
+def plot_centroid_norms(tau_logs, save_path=''):
+    epochs = _extract_epochs(tau_logs)
+    centroids = np.stack([e["centroids"] for e in tau_logs])  # (T, K, d)
+
+    norms = np.linalg.norm(centroids, axis=-1)  # (T, K)
+
+    plt.figure()
+    for k in range(norms.shape[1]):
+        plt.plot(epochs, norms[:, k], label=f"centroid[{k}]")
+
+    plt.xlabel("Epoch")
+    plt.ylabel("||centroid||")
+    plt.title("Centroid norm evolution")
+    plt.legend()
+    plt.grid(True)
+    if not save_path=='':
+        plt.savefig(save_path+'centroids_norm_history.png')
+    plt.show()
+    plt.close()
+    
+def plot_centroid_components(tau_logs, save_path=''):
+    epochs = _extract_epochs(tau_logs)
+    centroids = np.stack([e["centroids"] for e in tau_logs])  # (T, K, d)
+
+    T, K, d = centroids.shape
+
+    fig, axes = plt.subplots(
+        nrows=d,
+        ncols=1,
+        figsize=(3 * d, 4),
+        sharex=True,
+    )
+
+    # Handle d = 1 case
+    if d == 1:
+        axes = [axes]
+
+    for dim in range(d):
+        ax = axes[dim]
+        for k in range(K):
+            ax.plot(
+                epochs,
+                centroids[:, k, dim],
+                lw=2,
+                label=f"k={k}",
+            )
+
+        ax.set_ylabel(f"dim {dim}")
+        ax.grid(True)
+
+        if dim == 0:
+            ax.set_title("Centroid component evolution (all k)")
+
+        if dim == d - 1:
+            ax.set_xlabel("Epoch")
+
+        # Optional: only show legend if K is small
+        if K <= 6:
+            ax.legend(fontsize=10)
+
+    plt.tight_layout()
+    if not save_path=='':
+        plt.savefig(save_path+'centroids_history.png')
+    plt.show()
+    plt.close()
+    return
+
+def plot_loss_curves(epoch_losses, save_path=''):
+    # -----------------------------
+    # Training loss curves
+    # -----------------------------
+    fig = plt.figure(figsize=(10, 10)) 
+    fig.patch.set_facecolor('white')  
+    losses = [l.item().squeeze() if torch.is_tensor(l) else l for l in epoch_losses]
+    losses = [l.reshape((-1,)) for l in losses]
+    plt.plot(losses)
+    plt.title("Training Loss")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.grid(True)
+    plt.tight_layout()
+    if not save_path=='':
+        plt.savefig(save_path+'loss_history.png')
+    plt.show()
+    plt.close()
+    return
+
+def plot_all_tau_diagnostics(tau_logs, save_path=''):
+    plot_scalar(tau_logs, "loss", ylabel="Loss", save_path=save_path+'/tau_')
+    plot_scalar(tau_logs, "nu_shape", ylabel=r"$\nu_{\mathrm{shape}}$", save_path=save_path+'/tau_')
+    plot_scalar(tau_logs, "nu_norm", ylabel=r"$\nu_{\mathrm{norm}}$", save_path=save_path+'/tau_')
+    plot_widths(tau_logs, save_path=save_path+'/tau_')
+    plot_centroid_components(tau_logs, save_path=save_path+'/tau_')
+    plot_coeffs(tau_logs, save_path=save_path+'/tau_')
+    return
+
+def plot_all_delta_diagnostics(tau_logs, save_path=''):
+    plot_scalar(tau_logs, "loss", ylabel="Loss", save_path=save_path+'/delta_')
+    plot_scalar(tau_logs, "nu_shape", ylabel=r"$\nu_{\mathrm{shape}}$", save_path=save_path+'/delta_')
+    plot_scalar(tau_logs, "nu_norm", ylabel=r"$\nu_{\mathrm{norm}}$", save_path=save_path+'/delta_')
+    return
+
+
+def plot_loss_curves(epoch_losses):
+    # -----------------------------
+    # Plot 1: Training loss curves
+    # -----------------------------
+    fig = plt.figure(figsize=(10, 10)) 
+    fig.patch.set_facecolor('white')  
+    losses = [l.item().squeeze() if torch.is_tensor(l) else l for l in epoch_losses]
+    losses = [l.reshape((-1,)) for l in losses]
+    plt.plot(losses)
+    plt.title("Training Loss")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+    return
+
+def plot_training_data(data, weight_data, ref, weight_ref, feature_labels, bins_code, xlabel_code, ymax_code={},
+                       save=False, save_path='', file_name=''):
+    '''
+    Plot distributions of the input variables for the training samples.
+    
+    data:            (numpy array, shape (None, n_dimensions)) data training sample (label=1)
+    weight_data:     (numpy array, shape (None,)) weights of the data sample (default ones)
+    ref:             (numpy array, shape (None, n_dimensions)) reference training sample (label=0)
+    weight_ref:      (numpy array, shape (None,)) weights of the reference sample
+    feature_labels:  (list of string) list of names of the training variables
+    bins_code:       (dict) dictionary of bins edge for each training variable (bins_code.keys()=feature_labels)
+    xlabel_code:     (dict) dictionary of xlabel for each training variable (xlabel.keys()=feature_labels)
+    ymax_code:       (dict) dictionary of maximum value for the y axis in the ratio panel for each training variable (ymax_code.keys()=feature_labels)
+    '''
+    plt_i = 0
+    for key in feature_labels:
+        bins = bins_code[key]
+        plt.rcParams["font.family"] = "serif"
+        plt.style.use('classic')
+        fig = plt.figure(figsize=(10, 10)) 
+        fig.patch.set_facecolor('white')  
+        ax1= fig.add_axes([0.1, 0.43, 0.8, 0.5])        
+        hD = plt.hist(data[:, plt_i],weights=weight_data, bins=bins, label='DATA', color='black', lw=1.5, histtype='step', zorder=4)
+        hR = plt.hist(ref[:, plt_i], weights=weight_ref, color='#a6cee3', ec='#1f78b4', bins=bins, lw=1, label='REFERENCE')
+        plt.errorbar(0.5*(bins[1:]+bins[:-1]), hD[0], yerr= np.sqrt(hD[0]), color='black', ls='', marker='o', ms=5, zorder=3)
+        font = font_manager.FontProperties(family='serif', size=16)
+        l    = plt.legend(fontsize=18, prop=font, ncol=2)
+        font = font_manager.FontProperties(family='serif', size=18) 
+        plt.tick_params(axis='x', which='both',    labelbottom=False)
+        plt.yticks(fontsize=16, fontname='serif')
+        plt.xlim(bins[0], bins[-1])
+        plt.ylabel("events", fontsize=22, fontname='serif')
+        plt.yscale('log')
+        ax2 = fig.add_axes([0.1, 0.1, 0.8, 0.3]) 
+        x   = 0.5*(bins[1:]+bins[:-1])
+        plt.errorbar(x, hD[0]/hR[0], yerr=np.sqrt(hD[0])/hR[0], ls='', marker='o', label ='DATA/REF', color='black')
+        font = font_manager.FontProperties(family='serif', size=16)
+        plt.legend(fontsize=18, prop=font)
+        plt.xlabel(xlabel_code[key], fontsize=22, fontname='serif')
+        plt.ylabel("ratio", fontsize=22, fontname='serif')
+        if key in list(ymax_code.keys()):
+            plt.ylim(0., ymax_code[key])
+        plt.yticks(fontsize=16, fontname='serif')
+        plt.xticks(fontsize=16, fontname='serif')
+        plt.xlim(bins[0], bins[-1])
+        plt.grid()
+        if save:
+            if save_path=='': print('argument save_path is not defined. The figure will not be saved.')
+            else:
+                if file_name=='': file_name = 'InputVariable_%s'%(key)
+                else: file_name += '_InputVariable_%s'%(key)
+                fig.savefig(save_path+file_name+'.pdf')
+        plt.show()
+        plt.close()
+        plt_i+=1
+    return
+
+def plot_reconstruction(
+    data,
+    weight_data,
+    ref,
+    weight_ref,
+    feature_labels,
+    bins_code,
+    xlabel_code,
+    ymax_code={},
+    df=None,
+    tau_OBS=None,
+    output_tau_ref=None,
+    delta_OBS=None,
+    output_delta_ref=None,
+    save=False,
+    save_path="",
+    file_name="",
+):
+    """
+    Reconstruction of the data distribution learnt by the model.
+    """
+
+    # ------------------------------------------------------------
+    # Z-score (only if meaningful)
+    # ------------------------------------------------------------
+    Zscore = None
+    if df is not None and tau_OBS is not None:
+        tau_eff = tau_OBS if delta_OBS is None else (tau_OBS - delta_OBS)
+        Zscore = norm.ppf(chi2.cdf(tau_eff, df))
+
+    # ------------------------------------------------------------
+    # Loop over features
+    # ------------------------------------------------------------
+    for i, key in enumerate(feature_labels):
+        bins = bins_code[key]
+        x = 0.5 * (bins[1:] + bins[:-1])
+
+        plt.rcParams["font.family"] = "serif"
+        plt.style.use("classic")
+
+        fig = plt.figure(figsize=(10, 10))
+        fig.patch.set_facecolor("white")
+
+        # ============================
+        # Top panel: distributions
+        # ============================
+        ax1 = fig.add_axes([0.1, 0.43, 0.8, 0.5])
+
+        hD = ax1.hist(
+            data[:, i],
+            weights=weight_data,
+            bins=bins,
+            histtype="step",
+            lw=1.5,
+            color="black",
+            label="DATA",
+            zorder=3,
+        )
+
+        hR = ax1.hist(
+            ref[:, i],
+            weights=weight_ref,
+            bins=bins,
+            lw=1,
+            color="#a6cee3",
+            ec="#1f78b4",
+            label="REFERENCE",
+            zorder=1,
+        )
+
+        # --- Tau reconstruction ---
+        if output_tau_ref is not None:
+            hTau = ax1.hist(
+                ref[:, i],
+                weights=np.exp(output_tau_ref[:, 0]) * weight_ref,
+                bins=bins,
+                histtype="step",
+                lw=0,
+            )
+            ax1.scatter(
+                x,
+                hTau[0],
+                edgecolor="black",
+                color="#b2df8a",
+                s=30,
+                lw=1,
+                label=r"$\tau$ RECO",
+                zorder=4,
+            )
+
+        # --- Delta reconstruction ---
+        if output_delta_ref is not None:
+            hDel = ax1.hist(
+                ref[:, i],
+                weights=np.exp(output_delta_ref[:, 0]) * weight_ref,
+                bins=bins,
+                histtype="step",
+                lw=0,
+            )
+            ax1.scatter(
+                x,
+                hDel[0],
+                edgecolor="black",
+                color="#33a02c",
+                s=30,
+                lw=1,
+                label=r"$\Delta$ RECO",
+                zorder=4,
+            )
+
+        # --- Data statistical errors ---
+        ax1.errorbar(
+            x,
+            hD[0],
+            yerr=np.sqrt(hD[0]),
+            ls="",
+            marker="o",
+            ms=5,
+            color="black",
+            zorder=5,
+        )
+
+        # --- Legend title ---
+        title_parts = []
+        if tau_OBS is not None:
+            title_parts.append(rf"$\tau(D,A)={tau_OBS:.2f}$")
+        if delta_OBS is not None:
+            title_parts.append(rf"$\Delta(D,A)={delta_OBS:.2f}$")
+        if Zscore is not None:
+            title_parts.append(rf"$Z={Zscore:.2f}$")
+
+        font = font_manager.FontProperties(family="serif", size=18)
+        leg = ax1.legend(prop=font, fontsize=18, ncol=2)
+        if title_parts:
+            leg.set_title(", ".join(title_parts), prop=font)
+
+        ax1.set_yscale("log")
+        ax1.set_ylabel("events", fontsize=22)
+        ax1.set_xlim(bins[0], bins[-1])
+        ax1.tick_params(axis="x", labelbottom=False)
+
+        # ============================
+        # Bottom panel: ratios
+        # ============================
+        ax2 = fig.add_axes([0.1, 0.1, 0.8, 0.3])
+
+        safe_ref = np.where(hR[0] > 0, hR[0], np.nan)
+
+        ax2.errorbar(
+            x,
+            hD[0] / safe_ref,
+            yerr=np.sqrt(hD[0]) / safe_ref,
+            ls="",
+            marker="o",
+            color="black",
+            label="DATA/REF",
+        )
+
+        if output_tau_ref is not None:
+            ax2.plot(
+                x,
+                hTau[0] / safe_ref,
+                lw=3,
+                color="#b2df8a",
+                label=r"$\tau$/REF",
+            )
+
+        if output_delta_ref is not None:
+            ax2.plot(
+                x,
+                hDel[0] / safe_ref,
+                lw=3,
+                ls="--",
+                color="#33a02c",
+                label=r"$\Delta$/REF",
+            )
+
+        ax2.set_xlabel(xlabel_code[key], fontsize=22)
+        ax2.set_ylabel("ratio", fontsize=22)
+        ax2.set_xlim(bins[0], bins[-1])
+        ax2.grid(True)
+
+        if key in ymax_code:
+            ax2.set_ylim(0.0, ymax_code[key])
+
+        ax2.legend(fontsize=18)
+
+        # ============================
+        # Save / show
+        # ============================
+        if save and save_path:
+            fname = file_name or "Reconstruction"
+            fig.savefig(f"{save_path}/{fname}_{key}.pdf")
+
+        plt.show()
+        plt.close(fig)
